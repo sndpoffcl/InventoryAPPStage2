@@ -142,11 +142,11 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
             values.put(InventoryEntry.COLUMN_PRODUCT_NAME, productNameString);
         } else {
             Toast.makeText(this, getString(R.string.product_name_requires), Toast.LENGTH_SHORT).show();
-            return;
         }
 
-        if (mSupplieName == InventoryEntry.SUPPLIER_UNKNOWN) {
+        if (mSupplieName == 0) {
             Toast.makeText(this, getString(R.string.supplier_name_requires), Toast.LENGTH_SHORT).show();
+            values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME, mSupplieName);
         } else {
             values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME, mSupplieName);
         }

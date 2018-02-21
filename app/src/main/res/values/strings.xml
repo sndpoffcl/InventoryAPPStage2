@@ -47,7 +47,7 @@
     <string name="product_name_requires">Product name requires</string>
     <string name="price_requires">Product price requires valid</string>
     <string name="quantity_requires">Product quantity requires valid</string>
-    <string name="supplier_name_requires">Supplier Name requires valid</string>
+    <string name="supplier_name_requires">Supplier Name added as unknown</string>
     <string name="supplier_phone_requires">Supplier Phone requires valid</string>
 
 </resources>
