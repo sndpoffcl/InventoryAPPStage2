@@ -21,4 +21,4 @@ My ninth and the Last :) project at Misk-Udacity - Android Basics by Google Nano
 
 <img src="https://github.com/Muneera-Salah/Inventory-App-Stage-2/blob/master/screenshots/10.png" height="600">
 
-<img src="https://github.com/Muneera-Salah/Inventory-App-Stage-2/blob/master/screenshots/11.png" height="600">
+<img src="https://github.com/Muneera-Salah/Inventory-App-Stage-2/blob/master/screenshots/Screenshot_2018-02-21-23-19-42.png" height="600">
