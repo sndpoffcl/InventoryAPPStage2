@@ -133,7 +133,6 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
     }
 
     private void showDeleteConfirmationDialog() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.delete_all_dialog_msg);
         builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {

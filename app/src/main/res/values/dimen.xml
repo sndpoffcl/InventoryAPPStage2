@@ -6,4 +6,6 @@
 
     <!-- list_item -->
     <dimen name="list_item_margin">16dp</dimen>
+    <dimen name="list_item_textview_marginRight">10dp</dimen>
+    <dimen name="list_item_linearlayout_marginLeft">5dp</dimen>
 </resources>

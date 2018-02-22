@@ -23,6 +23,8 @@
     <!-- activity_view -->
     <string name="product_view">Product view Details</string>
     <string name="delete_dialog_msg">Delete this Product?</string>
+    <string name="quantity_change_msg">Quantity was change</string>
+    <string name="quantity_finish_msg">Product was finish :( , buy another Product</string>
 
     <!-- activity_view and activity_editor-->
     <string name="product_name">Product Name</string>
@@ -52,9 +54,9 @@
 
     <string name="product_name_requires">Product name requires</string>
     <string name="filed_requires">please fill all filed form to insert an new product</string>
-    <string name="price_requires">Product price requires valid</string>
-    <string name="quantity_requires">Product quantity requires valid</string>
-    <string name="supplier_name_requires">Supplier Name added as unknown</string>
-    <string name="supplier_phone_requires">Supplier Phone requires valid</string>
+    <string name="price_requires">Product price requires</string>
+    <string name="quantity_requires">Product quantity requires</string>
+    <string name="supplier_name_requires">Supplier Name requires select anything without unknown selection</string>
+    <string name="supplier_phone_requires">Supplier Phone requires</string>
 
 </resources>

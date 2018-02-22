@@ -163,10 +163,11 @@ public class ViewActivity extends AppCompatActivity implements LoaderManager.Loa
         productQuantity = productQuantity - 1;
         if (productQuantity >= 0) {
             updateProduct(productQuantity);
-            Toast.makeText(this, "Quantity was change", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.quantity_change_msg), Toast.LENGTH_SHORT).show();
+
             Log.d("Log msg", " - productID " + productID + " - quantity " + productQuantity + " , decreaseCount has been called.");
         } else {
-            Toast.makeText(this, "Product was finish :( , buy another Product", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.quantity_finish_msg), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -174,7 +175,8 @@ public class ViewActivity extends AppCompatActivity implements LoaderManager.Loa
         productQuantity = productQuantity + 1;
         if (productQuantity >= 0) {
             updateProduct(productQuantity);
-            Toast.makeText(this, "Quantity was change", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.quantity_change_msg), Toast.LENGTH_SHORT).show();
+
             Log.d("Log msg", " - productID " + productID + " - quantity " + productQuantity + " , decreaseCount has been called.");
         }
     }
@@ -182,11 +184,13 @@ public class ViewActivity extends AppCompatActivity implements LoaderManager.Loa
 
     private void updateProduct(int productQuantity) {
         Log.d("message", "updateProduct at ViewActivity");
+
         if (mCurrentProductUri == null) {
             return;
         }
         ContentValues values = new ContentValues();
         values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, productQuantity);
+
         if (mCurrentProductUri == null) {
             Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
             if (newUri == null) {
@@ -207,7 +211,6 @@ public class ViewActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         }
     }
-
 
     private void deleteProduct() {
         if (mCurrentProductUri != null) {
