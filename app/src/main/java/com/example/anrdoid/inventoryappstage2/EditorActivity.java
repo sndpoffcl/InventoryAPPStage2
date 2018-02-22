@@ -90,8 +90,6 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     }
 
     private void setupSpinner() {
-        Log.d("message", "setupSpinner");
-
         ArrayAdapter productSupplieNameSpinnerAdapter = ArrayAdapter.createFromResource(this,
                 R.array.array_supplier_options, android.R.layout.simple_spinner_item);
 
@@ -123,67 +121,66 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
         });
     }
 
-    private void insertProduct() {
-        Log.d("message", "insertProduct");
 
+    private void saveProduct() {
         String productNameString = mProductNameEditText.getText().toString().trim();
         String productPriceString = mProductPriceEditText.getText().toString().trim();
         String productQuantityString = mProductQuantityEditText.getText().toString().trim();
         String productSupplierPhoneNumberString = mProductSupplierPhoneNumberEditText.getText().toString().trim();
 
         if (mCurrentProductUri == null &&
-                TextUtils.isEmpty(productNameString) && TextUtils.isEmpty(productPriceString) &&
-                TextUtils.isEmpty(productQuantityString) && TextUtils.isEmpty(productSupplierPhoneNumberString) && mSupplieName == InventoryEntry.SUPPLIER_UNKNOWN) {
+                TextUtils.isEmpty(productNameString) || TextUtils.isEmpty(productPriceString) ||
+                TextUtils.isEmpty(productQuantityString) || TextUtils.isEmpty(productSupplierPhoneNumberString) || mSupplieName == InventoryEntry.SUPPLIER_UNKNOWN) {
+            Toast.makeText(this, getString(R.string.filed_requires), Toast.LENGTH_SHORT).show();
             return;
         }
         ContentValues values = new ContentValues();
 
-        if (!TextUtils.isEmpty(productNameString)) {
-            values.put(InventoryEntry.COLUMN_PRODUCT_NAME, productNameString);
-        } else {
+        if (TextUtils.isEmpty(productNameString)) {
             Toast.makeText(this, getString(R.string.product_name_requires), Toast.LENGTH_SHORT).show();
         }
+        values.put(InventoryEntry.COLUMN_PRODUCT_NAME, productNameString);
 
-        if (mSupplieName == 0) {
+        if (mSupplieName == InventoryEntry.SUPPLIER_UNKNOWN) {
             Toast.makeText(this, getString(R.string.supplier_name_requires), Toast.LENGTH_SHORT).show();
-            values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME, mSupplieName);
-        } else {
-            values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME, mSupplieName);
         }
+        values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME, mSupplieName);
 
         int productPriceInteger = 0;
         if (!TextUtils.isEmpty(productPriceString)) {
             productPriceInteger = Integer.parseInt(productPriceString);
-            values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, productPriceInteger);
         } else {
             Toast.makeText(this, getString(R.string.price_requires), Toast.LENGTH_SHORT).show();
         }
+        values.put(InventoryEntry.COLUMN_PRODUCT_PRICE, productPriceInteger);
 
         int productQuantityInteger = 0;
         if (!TextUtils.isEmpty(productQuantityString)) {
             productQuantityInteger = Integer.parseInt(productQuantityString);
-            values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, productQuantityInteger);
         } else {
             Toast.makeText(this, getString(R.string.quantity_requires), Toast.LENGTH_SHORT).show();
         }
-
+        values.put(InventoryEntry.COLUMN_PRODUCT_QUANTITY, productQuantityInteger);
 
         int productSupplierPhoneNumberInteger = 0;
         if (!TextUtils.isEmpty(productSupplierPhoneNumberString)) {
             productSupplierPhoneNumberInteger = Integer.parseInt(productSupplierPhoneNumberString);
-            values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER, productSupplierPhoneNumberInteger);
         } else {
             Toast.makeText(this, getString(R.string.supplier_phone_requires), Toast.LENGTH_SHORT).show();
         }
+        values.put(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER, productSupplierPhoneNumberInteger);
+
 
         if (mCurrentProductUri == null) {
             Uri newUri = getContentResolver().insert(InventoryEntry.CONTENT_URI, values);
+
             if (newUri == null) {
                 Toast.makeText(this, getString(R.string.insert_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, getString(R.string.insert_successful),
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
         } else {
             int rowsAffected = getContentResolver().update(mCurrentProductUri, values, null, null);
@@ -191,10 +188,10 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
                 Toast.makeText(this, getString(R.string.update_failed),
                         Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, getString(R.string.insert_successful),
+                Toast.makeText(this, getString(R.string.update_successful),
                         Toast.LENGTH_SHORT).show();
+                finish();
             }
-
         }
     }
 
@@ -209,8 +206,7 @@ public class EditorActivity extends AppCompatActivity implements LoaderManager.L
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_save:
-                insertProduct();
-                finish();
+                saveProduct();
                 return true;
             case android.R.id.home:
                 if (!mProductHasChanged) {

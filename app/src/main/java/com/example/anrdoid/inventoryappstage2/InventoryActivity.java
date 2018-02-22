@@ -44,15 +44,15 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
             }
         });
 
-        ListView InventoryListView = findViewById(R.id.list);
+        ListView inventoryListView = findViewById(R.id.list);
 
         TextView emptyView = findViewById(R.id.empty_text_view);
-        InventoryListView.setEmptyView(emptyView);
+        inventoryListView.setEmptyView(emptyView);
 
         mCursorAdapter = new InventoryCursorAdapter(this, null);
-        InventoryListView.setAdapter(mCursorAdapter);
+        inventoryListView.setAdapter(mCursorAdapter);
 
-        InventoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        inventoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, final long id) {
                 Intent intent = new Intent(InventoryActivity.this, ViewActivity.class);
@@ -132,7 +132,6 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
         return super.onOptionsItemSelected(item);
     }
 
-
     private void showDeleteConfirmationDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -150,11 +149,9 @@ public class InventoryActivity extends AppCompatActivity implements LoaderManage
                 }
             }
         });
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
     }
-
 
 }
 

@@ -92,34 +92,30 @@ public class InventoryProvider extends ContentProvider {
 
         Integer priceProduct = values.getAsInteger(InventoryEntry.COLUMN_PRODUCT_PRICE);
         if (priceProduct != null && priceProduct < 0) {
-            throw new
-                    IllegalArgumentException("Product price requires valid");
+            throw new IllegalArgumentException("Product price requires valid");
         }
 
         Integer quantityProduct = values.getAsInteger(InventoryEntry.COLUMN_PRODUCT_QUANTITY);
         if (quantityProduct != null && quantityProduct < 0) {
-            throw new
-                    IllegalArgumentException("Product quantity requires valid");
+            throw new IllegalArgumentException("Product quantity requires valid");
         }
+
         Integer supplierName = values.getAsInteger(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_NAME);
         if (supplierName == null || !InventoryEntry.isValidSupplierName(supplierName)) {
-            throw new IllegalArgumentException("Supplier Name requires valid");
+            throw new IllegalArgumentException("Pet requires valid gender");
         }
 
         Integer supplierPhone = values.getAsInteger(InventoryEntry.COLUMN_PRODUCT_SUPPLIER_PHONE_NUMBER);
         if (supplierPhone != null && supplierPhone < 0) {
-            throw new
-                    IllegalArgumentException("Supplier Phone requires valid");
+            throw new IllegalArgumentException("Supplier Phone requires valid");
         }
 
         SQLiteDatabase database = mDbHelper.getWritableDatabase();
-
         long id = database.insert(InventoryEntry.TABLE_NAME, null, values);
         if (id == -1) {
             Log.v("message:", "Failed to insert new row for " + uri);
             return null;
         }
-
         getContext().getContentResolver().notifyChange(uri, null);
         return ContentUris.withAppendedId(uri, id);
     }
