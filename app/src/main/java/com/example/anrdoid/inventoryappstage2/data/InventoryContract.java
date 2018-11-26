@@ -5,7 +5,7 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 
 /**
- * Created by Labtop on 20/02/18.
+ * Created by SandeepSinha on 20/11/18.
  */
 
 public class InventoryContract {

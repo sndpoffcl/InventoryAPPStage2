@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.example.anrdoid.inventoryappstage2.data.InventoryContract.InventoryEntry;
 
 /**
- * Created by Labtop on 20/02/18.
+ * Created by SandeepSinha on 20/11/18.
  */
 
 public class InventoryCursorAdapter extends CursorAdapter {

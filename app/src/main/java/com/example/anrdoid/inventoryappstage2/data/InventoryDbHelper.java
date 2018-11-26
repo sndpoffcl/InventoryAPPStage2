@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.anrdoid.inventoryappstage2.data.InventoryContract.InventoryEntry;
 
 /**
- * Created by Labtop on 20/02/18.
+ * Created by SandeepSinha on 20/11/18.
  */
 
 public class InventoryDbHelper extends SQLiteOpenHelper {
